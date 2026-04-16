@@ -1,0 +1,18 @@
+# GravitNet × Grok PoC — Python Dependencies
+# Required for the Python SDK and Live PoC integration
+
+requests>=2.32.0          # HTTP client to communicate with Gravit endpoints
+fastapi>=0.115.0          # For running a local Gravit server (recommended)
+uvicorn[standard]>=0.30.0 # ASGI server for FastAPI
+pydantic>=2.9.0           # Data validation and settings management
+networkx>=3.3             # Working with Ω Temporal Knowledge Graph
+matplotlib>=3.9.0         # Graph visualization (Ω Trace Graph)
+numpy>=2.1.0              # Mathematical operations (resilience, weights, etc.)
+
+# Optional but recommended for better visualization
+graphviz>=0.20.3          # Graphviz for high-quality graph rendering
+
+# Development & Testing
+black>=24.8.0             # Code formatter
+isort>=5.13.2             # Import sorter
+pytest>=8.3.0             # Testing framework
