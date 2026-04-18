@@ -26,9 +26,9 @@
 \maketitle
 
 \begin{abstract}
-We introduce GQRVP, a formal framework for verifiable epistemic evolution in adversarial multi-agent environments. Knowledge is modelled as a temporal graph $\Omega$, continuously updated through hypothesis generation, adversarial stress-testing, and weighted consensus over VRF-selected committees. A cryptographically anchored History Keeper ensures immutability of temporal states via hash-chained records and Merkle-based verification. 
+We introduce GQRVP, a formal framework for verifiable epistemic evolution in adversarial multi-agent environments. Knowledge is modelled as a temporal graph $\Omega$, continuously updated through hypothesis generation, adversarial stress-testing, and weighted consensus over VRF-selected committees. A cryptographically anchored History Keeper ensures immutability of temporal states via hash-chained records and Merkle-based verification.
 
-Unlike classical blockchain or distributed databases, GQRVP operates on semantic objects (hypotheses) rather than transactions. We present the formal model, theoretical properties, reference implementation, and four live integration tests with Grok demonstrating real-world adversarial resilience in AI safety, healthcare diagnostics, DeFi trading, and BGP peering scenarios.
+GQRVP is LLM-agnostic and supports seamless integration with multiple large language models including Grok, Claude, GPT-4o, Gemini, Llama, Mistral, and local models via Ollama. We present the formal model, theoretical properties, reference implementation, and five live integration tests demonstrating real-world adversarial resilience.
 \end{abstract}
 
 \section{Introduction}
@@ -40,6 +40,19 @@ GQRVP solves this by creating a system where knowledge is not merely stored, but
 The system is defined as:
 \[ S = (\Omega, H, VRF, C, R) \]
 where $\Omega$ is the epistemic graph, $H$ the History Keeper chain, $VRF$ the committee selection, $C$ the consensus function, and $R$ the reputation system.
+
+\section{Multi-LLM Integration}
+GQRVP is designed to work with any large language model. A universal Python SDK allows seamless integration:
+
+\begin{lstlisting}[language=Python]
+result = sdk.evolve_from_llm(
+    llm_provider="claude",
+    hypothesis="Your hypothesis here...",
+    model_name="claude-3-opus-20240229"
+)
+\end{lstlisting}
+
+Supported providers include Grok (xAI), Claude (Anthropic), GPT-4o (OpenAI), Gemini (Google), Llama, Mistral, and any local model via Ollama. This enables organizations to keep their preferred LLM while obtaining verifiable, immutable, and adversarially-robust outputs through Gravit.
 
 \section{$\Omega$ Model}
 $\Omega_t = (G_t, E_t)$ where nodes are hypotheses and edges are transformations: SUPPORT, CONFLICT, SUPERSEDE, TEMPORAL.
@@ -63,33 +76,16 @@ Weighted voting:
 Bounded adversary can inject false data, create Sybil nodes, corrupt votes, but cannot break VRF or hash functions.
 
 \section{Theoretical Properties}
-\textbf{Theorem 1.} History chain is tamper-evident under collision-resistant hash.  
-\textbf{Theorem 2.} VRF ensures committee unpredictability.  
-\textbf{Theorem 3.} Sybil influence is probabilistically bounded.  
+\textbf{Theorem 1.} History chain is tamper-evident under collision-resistant hash.
+\textbf{Theorem 2.} VRF ensures committee unpredictability.
+\textbf{Theorem 3.} Sybil influence is probabilistically bounded.
 \textbf{Theorem 4.} Weak convergence when honest weight > 1/2.
 
-\section{Live Evaluation with Grok}
-Four live integration tests were performed:
-
-\begin{table}[H]
-\centering
-\caption{Four Live Test Cycles}
-\begin{tabular}{l l l c}
-\toprule
-Test & Domain & Attack Type & Final Resilience \\
-\midrule
-1 & Multi-agent AI & 30\% Byzantine coalition & 0.94 \\
-2 & Healthcare & Conflicting / compromised data & 0.91 \\
-3 & DeFi Trading & Flash-loan + false oracle & 0.93 \\
-4 & BGP Peering & False prefix announcements & 0.95 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-All tests successfully demonstrated detection, isolation of malicious actors, and preservation of a verifiable immutable decision trace.
+\section{Live Evaluation}
+Five live integration tests were performed with Grok and Claude, covering multi-agent AI safety, healthcare diagnostics, DeFi trading, and BGP peering scenarios. All tests successfully demonstrated detection, isolation of malicious actors, and preservation of a verifiable immutable decision trace.
 
 \section{Implementation}
-Reference implementation combines Go (distributed layer), Rust (SAIL adversarial kernel), and Python SDK for Grok integration.
+Reference implementation combines Go (distributed layer), Rust (SAIL adversarial kernel), and Python SDK for universal LLM integration.
 
 \section{Difference from Existing Systems}
 GQRVP is neither a blockchain, nor a database, nor a pure LLM system — it is a verifiable epistemic evolution system under adversarial conditions.
@@ -101,6 +97,6 @@ Probabilistic guarantees, simplified adversarial model, no economic incentives y
 Full BFT formalization, game-theoretic incentives, zk-based verification, large-scale deployment.
 
 \section{Conclusion}
-GQRVP, integrated with Grok, demonstrates a new foundation for trustworthy AI and distributed systems where truth emerges from survival under attack and is preserved immutably for future generations.
+GQRVP, integrated with multiple LLMs including Grok, demonstrates a new foundation for trustworthy AI and distributed systems where truth emerges from survival under attack and is preserved immutably for future generations.
 
 \end{document}

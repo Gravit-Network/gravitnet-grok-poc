@@ -1,20 +1,11 @@
-# GravitNet × Grok — Live PoC Integration
+# GravitNet × Grok — Multi-LLM Verifiable Integration PoC
 
-Official open integration between **Grok** (xAI) and **Gravit Open Network**.
-
-**What it does**  
-Grok generates rich hypotheses → Gravit turns them into verifiable epistemic evolution:
-- Ω Temporal Knowledge Graph
-- Adversarial stress-testing (GQRVP)
-- VRF committee selection
-- Weighted consensus + reputation dynamics
-- Immutable Merkle-anchored History Keeper
-
-**Live Demo**  
-Run the example below to see a real hypothesis go through the full Gravit pipeline and receive a verifiable anchor.
+Official open PoC that allows **any LLM** (Grok, Claude, GPT-4o, Gemini, Llama, Mistral, Ollama, etc.) to send hypotheses to Gravit and receive verifiable, adversarially-robust, immutable decision traces.
 
 ## Quick Start
 
 ```bash
+cp .env.example .env
 pip install -r requirements.txt
-python poc_example.py
+python test_grok_api.py          # Test Grok API
+python poc_example.py            # Run full Gravit verification

@@ -2,8 +2,12 @@ from gravit_grok_sdk import GravitGrokSDK
 
 sdk = GravitGrokSDK()
 
-hypothesis = "The integration of Grok and Gravit creates a verifiable epistemic evolution system that survives adversarial conditions and preserves truth for future generations."
+hypothesis = "In a multi-agent AI system for critical decision-making, a Byzantine coalition of 30% malicious nodes attempts to inject false data and corrupt consensus."
 
-result = sdk.evolve(hypothesis)
+result = sdk.evolve_from_llm(
+    llm_provider="grok",
+    hypothesis=hypothesis,
+    model_name="grok-4"
+)
 
-print(json.dumps(result, indent=2))
+print(result)
